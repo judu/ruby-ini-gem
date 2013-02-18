@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'ini'
+  s.name        = 'ini-phile'
   s.version     = '0.1.0'
   s.summary     = "Edit ini files with ease"
   s.description = "Read, write, modify ini fils seamlessly."
