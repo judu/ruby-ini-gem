@@ -5,6 +5,6 @@ Gem::Specification.new do |s|
   s.description = "Read, write, modify ini fils seamlessly."
   s.authors     = ["Julien Durillon"]
   s.email       = 'julien.durillon@clever-cloud.com'
-  s.files       = ["lib/ini.rb"]
+  s.files       = ["lib/ini-phile.rb"]
   s.homepage    = 'http://github.com/judu/ruby-ini-gem'
 end

@@ -3,10 +3,10 @@
 #             Rini::Ini:    0 /    9 =   0.00%
 
 begin
-  require 'ini'
+  require 'ini-phile'
 rescue LoadError
   require 'rubygems'
-  require 'ini'
+  require 'ini-phile'
 end
 
 begin; require 'turn'; rescue LoadError; end
