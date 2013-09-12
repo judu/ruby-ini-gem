@@ -71,6 +71,36 @@ class Ini
   end
   alias :save :write
 
+  # call-seq:
+  #   merge( ini )
+  #
+  def merge( other )
+    self.dup.merge!(other)
+  end
+
+  # call-seq:
+  #  merge!( ini )
+  #
+  def merge!( other )
+    my_keys = @ini.keys
+    other_keys =
+        case other
+        when Ini; other.instance_variable_get(:@ini).keys
+        when Hash; other.keys
+        else raise "cannot merge contents from '#{other.class.name}'" end
+
+    (my_keys & other_keys).each do |key|
+      @ini[key].merge!(other[key])
+    end
+
+    (other_keys - my_keys).each do |key|
+      @ini[key] = other[key]
+    end
+
+    self
+  end
+
+
   #
   # call-seq:
   #    each {|section, parameter, value| block}
