@@ -35,17 +35,24 @@ class Ini
   #    :comment => ';'      The line comment character(s)
   #    :parameter => '='    The parameter / value separator
   #
-  def initialize( filename, opts = {} )
-    @fn = filename
-    @comment = opts[:comment] || ';'
-    @param = opts[:parameter] || '='
-    @ini = Hash.new {|h,k| h[k] = Hash.new}
+  def initialize( opts = {} )
+    opts = { :filename => opts } if String === opts
+
+    @fn = opts.fetch(:filename, nil)
+    @comment = opts.fetch(:comment, ';')
+    @param = opts.fetch(:parameter, '=')
+    @content = opts.fetch(:content, nil)
 
     @rgxp_comment = %r/\A\s*\z|\A\s*[#{@comment}]/
     @rgxp_section = %r/\A\s*\[([^\]]+)\]/o
     @rgxp_param   = %r/\A([^#{@param}]+)#{@param}(.*)\z/
 
-    parse
+    if Hash === @content
+      @ini = @content
+    else
+      @ini = Hash.new {|h,k| h[k] = Hash.new}
+      parse
+    end
   end
 
   #
