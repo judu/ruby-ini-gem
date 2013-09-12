@@ -88,6 +88,12 @@ class Ini
     self
   end
 
+  # Returns this Ini converted to a Hash.
+  #
+  def to_h
+    @ini.dup
+  end
+
   #
   # call-seq:
   #    each_section {|section| block}
